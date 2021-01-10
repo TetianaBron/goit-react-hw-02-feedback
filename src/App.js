@@ -5,7 +5,7 @@ import Feedbacker from './components/Feedback/Feedback';
 export default function App() {
   return (
     <Layout>
-      <Feedbacker step={1}/>
+      <Feedbacker/>
     </Layout>
   );
 }

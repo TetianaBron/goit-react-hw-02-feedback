@@ -12,52 +12,52 @@ export default class Feedbacker extends Component  {
         bad: 0
     };
 
-    handleIncrementGood = () => {
-        console.log('Good');
+    update = (type) => {
 
-        this.setState({
-            good: this.state.good + 1,
+        this.setState(state => {
+            return {
+                [type]: state.[type] + 1,
+            };
         });
     };
 
-    handleIncrementNeutral = () => {
-        console.log('Neutral');
-
-         this.setState({
-            neutral: this.state.neutral + 1,
-        });
+    countTotalFeedback = () => {
+        return Object.values(this.state).reduce((acc, value) => acc + value, 0);
     }
 
-    handleIncrementBad = () => {
-        console.log('Bad');
+    countPositiveFeedbackPercentage = () => {
+        const percentage = Math.round(100 * this.state.good / this.countTotalFeedback());
+        return percentage > 0 ?  percentage : 0;
+}
 
-         this.setState({
-            bad: this.state.bad + 1,
-        });
-    }
 
     render() {
+
+    const total = this.countTotalFeedback();
+    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
 
         return (
             <div>
                 <p className="text">Please leave feedback</p>
-                <button type="button" onClick={this.handleIncrementGood}>
+                <button type="button" onClick={() => this.update('good')}>
                     Good
                 </button>
                 <button
-                    type="button" onClick={this.handleIncrementNeutral}>
+                    type="button" onClick={() => this.update('neutral')}>
                     Neutral
                 </button>
                 <button
-                    type="button" onClick={this.handleIncrementBad}>Bad
+                    type="button" onClick={() => this.update('bad')}>Bad
                 </button>
-                <p className="text">Statictic</p>
+                <p className="text">Statictics</p>
 
                 <ul>
                     <li>Good: <span>{this.state.good}</span></li>
                     <li>Neutral: <span>{this.state.neutral}</span></li>
                     <li>Bad: <span>{this.state.bad}</span></li>
                 </ul>
+                <p className="total">Total: {total}</p>
+                <p className="total">Positive feedback: {positiveFeedbackPercentage}%</p>
             </div>
         );
     }
