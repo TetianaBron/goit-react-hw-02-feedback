@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './components/Layout/Layout';
-import Feedbacker from './components/Feedback/Feedback';
+import Statistics from './components/Statistics/Statistics';
 
-export default function App() {
-  return (
-    <Layout>
-      <Feedbacker/>
-    </Layout>
-  );
+export default class App extends Component {
+
+  render() {
+    return (
+      <Layout>
+        <Statistics good={0} neutral={0} bad={0} total={0} positivePercentage={0} />
+      </Layout>
+    );
+  }
 }
