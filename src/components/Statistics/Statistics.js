@@ -40,8 +40,10 @@ export default class Statistics extends Component  {
 
         return (
             <div>
-                <FeedbackOptions options={this.props} onLeaveFeedback={this.update}/>
+                <FeedbackOptions options={this.state} onLeaveFeedback={this.update} />
                 <h2>Statictics</h2>
+
+                {/* { total && ( */}
                 <ul>
                     <li>Good: <span>{this.state.good}</span></li>
                     <li>Neutral: <span>{this.state.neutral}</span></li>
@@ -49,7 +51,8 @@ export default class Statistics extends Component  {
                 </ul>
                 <p className="total">Total: {total}</p>
                 <p className="total">Positive feedback: {positiveFeedbackPercentage}%</p>
-            </div>
+            {/* )} */}
+            </div> 
         );
     }
 }

@@ -1,8 +1,7 @@
 import './Feedback.css';
 
-const FeedbackOptions = ({options, onLeaveFeedback}) => (
+const FeedbackOptions = ({ options, onLeaveFeedback }) => (
             <div>
-                <h2>Please leave feedback</h2>
                 <button type="button" onClick={() => onLeaveFeedback('good')}>
                     Good
                 </button>
