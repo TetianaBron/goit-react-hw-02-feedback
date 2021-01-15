@@ -6,7 +6,8 @@ import Statistics from './components/Statistics/Statistics';
 import Notification from './components/Notification/Notification';
 
 export default class App extends Component {
-static propTypes = {};
+  static propTypes = {
+};
 
 static defaultProps = {};
   
@@ -17,14 +18,14 @@ static defaultProps = {};
      bad: 0
   }
 
-      update = (type) => {
+ update = (type) => {
+    this.setState(state => {
+     return {
+     [type]: state[type] + 1,
+     };
+   });
+ };
 
-        this.setState(state => {
-            return {
-                [type]: state.[type] + 1,
-            };
-        });
-      };
   
   countTotalFeedback = () => {
         return Object.values(this.state).reduce((acc, value) => acc + value, 0);
@@ -44,19 +45,19 @@ static defaultProps = {};
       <Layout>
         <Section title="Please leave feedback"> 
           <FeedbackOptions
-            options={this.state}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.update} />
         </Section>   
         <Section title="Statistics">   
-          {this.state > 0 ?
+           {Object.values(this.state).reduce((acc, value) => acc + value, 0) > 0 ?
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
               total={total}
               positivePercentage={positiveFeedbackPercentage} />
-            : <Notification message="No feedback given" />
-          }
+             : <Notification message="No feedback given" />
+          } 
           </Section>   
       </Layout>
     );

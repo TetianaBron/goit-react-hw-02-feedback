@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Section extends Component {
-    static propTypes = {
-        title: PropTypes.string,
-    };
+const Section = ({ title, children }) => (
+ <div className="Section">
+   <h2>{title}</h2>
+   {children}
+</div>
+ );
 
-    static defaultProps = {
 
-    };
-    
-    render() {
-        const { title, children } = this.props;
+Section.propTypes = {
+    title: PropTypes.string.isRequired,
+};
 
-        return (
-            <div>
-                <h2>{title}</h2>
-                {children}
-            </div>
-        )
-    }
-}
+export default Section;
