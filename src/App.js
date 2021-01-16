@@ -10,7 +10,6 @@ export default class App extends Component {
 };
 
 static defaultProps = {};
-  
    
   state = {
      good: 0,
