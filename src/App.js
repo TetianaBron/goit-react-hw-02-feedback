@@ -6,8 +6,7 @@ import Statistics from './components/Statistics/Statistics';
 import Notification from './components/Notification/Notification';
 
 export default class App extends Component {
-  static propTypes = {
-};
+  static propTypes = {};
 
 static defaultProps = {};
    
@@ -36,7 +35,6 @@ static defaultProps = {};
     }
 
   render() {
-
     const total = this.countTotalFeedback();
     const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
 
@@ -48,7 +46,7 @@ static defaultProps = {};
             onLeaveFeedback={this.update} />
         </Section>   
         <Section title="Statistics">   
-           {Object.values(this.state).reduce((acc, value) => acc + value, 0) > 0 ?
+           {total > 0 ?
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
